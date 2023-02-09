@@ -6,11 +6,27 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-function App() {
-  const [query, setQuery] = useState("");
-  const [weather, setWeather] = useState({});
+interface IWeather {
+  main?: {
+    temp: number;
+  };
+  name?: string;
+  sys?: {
+    country: string;
+  };
+  weather?: [
+    {
+      main: string;
+    }
+  ];
+}
 
-  const search = e => {
+function App() {
+  const [query, setQuery] = useState<string>("");
+  const [weather, setWeather] = useState<IWeather>({});
+  console.log(weather.name);
+
+  const search = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter") {
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then(res => res.json())
@@ -20,7 +36,7 @@ function App() {
         });
     }
   };
-  const dateBuilder = d => {
+  const dateBuilder = (d: Date) => {
     let months = [
       "January",
       "February",
