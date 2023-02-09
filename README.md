@@ -7,6 +7,7 @@
 
 ## Стек:
 * React (хуки)
+* Typescript
 * Vite
 
 ## Скриншот:
